@@ -10,17 +10,21 @@ chatlog.log
 
 # Environment variables
 .env
+.env.*
 
 # Virtual environments
 venv/
 env/
 
-# OS-specific
+# OS-specific files
 .DS_Store
 Thumbs.db
 
-# VS Code
+# Editor-specific files
 .vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
 
 # Python packaging
 *.egg-info/
@@ -30,5 +34,8 @@ build/
 # Pytest
 .pytest_cache/
 
-# Jupyter (just in case)
+# Jupyter Notebooks (in case you experiment later)
 .ipynb_checkpoints/
+
+# Render/Deployment (future-proof)
+render.yaml
