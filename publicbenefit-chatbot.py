@@ -23,14 +23,15 @@ def chatbot():
         logging.info(f"User prompt: {prompt}")
 
         try:
-            response = openai.ChatCompletion.create(
+            response = openai.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
                     {"role": "user", "content": prompt}
                 ],
                 max_tokens=150
             )
-            answer = response.choices[0].message["content"].strip()
+            answer = response.choices[0].message.content.strip()
             logging.info(f"Chatbot response: {answer}")
             return render_template('index.html', response=answer)
 
