@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}PublicBenefit Chatbot{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>PublicBenefit Chatbot</h1>
+        <nav>
+            <a href="/">Home</a> |
+            <a href="/logs">View Logs</a>
+        </nav>
+        <hr>
+    </header>
+
+    {% block content %}
+    <!-- Page-specific content will go here -->
+    {% endblock %}
+
+</body>
+</html>

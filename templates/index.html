@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Chatbot - PublicBenefit{% endblock %}
+
+{% block content %}
+    <form method="post" id="chat-form">
+        <label for="prompt">Enter your message:</label><br><br>
+        <textarea id="prompt" name="prompt" rows="10" cols="80" required></textarea><br><br>
+        <input type="submit" value="Send">
+        <button type="button" id="clear-button">Clear</button>
+    </form>
+
+    <div id="loading-message" style="display: none;">
+        <p><em>Loading response...</em></p>
+    </div>
+
+    {% if response %}
+        <h2>Response:</h2>
+        <p>{{ response }}</p>
+    {% endif %}
+
+    <script>
+        const form = document.getElementById("chat-form");
+        const promptInput = document.getElementById("prompt");
+        const loadingMessage = document.getElementById("loading-message");
+        const clearButton = document.getElementById("clear-button");
+
+        // Submit form when Enter is pressed
+        promptInput.addEventListener("keydown", function(event) {
+            if (event.key === "Enter" && !event.shiftKey) {
+                event.preventDefault();
+                form.submit();
+            }
+        });
+
+        // Show loading message when form is submitted
+        form.addEventListener("submit", function() {
+            loadingMessage.style.display = "block";
+        });
+
+        // Clear form and loading message when Clear button is clicked
+        clearButton.addEventListener("click", function() {
+            promptInput.value = "";
+            loadingMessage.style.display = "none";
+        });
+    </script>
+{% endblock %}
