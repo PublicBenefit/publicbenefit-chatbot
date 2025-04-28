@@ -1,16 +1,11 @@
-from flask import Flask, request, render_template
 import openai
 import os
 import logging
-from dotenv import load_dotenv
+from flask import Flask, render_template, request
 
-# Load environment variables from .env file
-load_dotenv()
-
-# Initialize Flask app
 app = Flask(__name__)
 
-# Set the OpenAI API key
+# Set your OpenAI API key from environment variables
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Logging configuration
@@ -28,14 +23,14 @@ def chatbot():
         logging.info(f"User prompt: {prompt}")
 
         try:
-            response = openai.chat.completions.create(
+            response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
                 messages=[
                     {"role": "user", "content": prompt}
                 ],
                 max_tokens=150
             )
-            answer = response.choices[0].message.content.strip()
+            answer = response.choices[0].message["content"].strip()
             logging.info(f"Chatbot response: {answer}")
             return render_template('index.html', response=answer)
 
@@ -57,6 +52,6 @@ def view_logs():
 
     return render_template('logs.html', logs=log_content)
 
-# Run the Flask app
+# Run the Flask app locally
 if __name__ == '__main__':
- app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
