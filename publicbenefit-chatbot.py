@@ -3,9 +3,14 @@ import os
 import logging
 from flask import Flask, render_template, request
 
+# Ensure log files exist
+if not os.path.exists('chatlog.log'):
+    open('chatlog.log', 'w').close()
+
+# Flask app initialization
 app = Flask(__name__)
 
-# Set your OpenAI API key from environment variables
+# OpenAI API key settup
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Logging configuration
@@ -32,7 +37,7 @@ def chatbot():
                 max_tokens=150
             )
             answer = response.choices[0].message.content.strip()
-            logging.info(f"Chatbot response: {answer}")
+            logging.info(f"chatbot response: {answer}")
             return render_template('index.html', response=answer)
 
         except Exception as e:
