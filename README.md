@@ -1,39 +1,47 @@
 # PublicBenefit ChatBot
 
-A lightweight Flask-based chatbot connected to OpenAI’s API, designed as a foundational tool for the Canadian charitable sector.  
-This project is the starting point for a future Retrieval-Augmented Generation (RAG) system and private organizational bots.
+A lightweight, AI-powered chatbot built with Flask and connected to OpenAI’s API — designed to support Canadian charities with compliance, operations, and knowledge delivery.
 
-## Features
+This chatbot is the first deployed component of a larger system aimed at enabling one human to manage hundreds of charities efficiently — by exception, not by task.
 
-- Chatbot web interface powered by OpenAI GPT models
+## 🔍 Purpose
+
+The PublicBenefit ChatBot serves as an interface for retrieving structured, reliable answers based on CRA guidance and internal knowledge structures (starting with the T3010). It’s designed to grow into a Retrieval-Augmented Generation (RAG) system powered by live data and domain-specific knowledge agents.
+
+## ✨ Features
+
+- Chat interface powered by OpenAI GPT models
 - Flask-based lightweight backend
-- Secure API key management via environment variables
+- Secure API key management via `.env` file
 - Local chat logging to `chatlog.log`
-- Viewable logs through `/logs` route
-- Simple, responsive web UI
+- Web-based log viewer at `/logs`
+- Simple, responsive HTML/CSS UI
 
-## Technology Stack
+## 🧱 Technology Stack
 
 - **Python 3.10+**
 - **Flask 2.3+**
 - **OpenAI Python API 1.13+**
-- **Gunicorn** (for production WSGI server)
+- **Gunicorn** for production WSGI serving
+- **Render.com** for public deployment
 
 ## Project Structure
 
 publicbenefit-chatbot/
-├── publicbenefit-chatbot.py
-├── requirements.txt
+├── publicbenefit-chatbot.py     # Main Flask app
+├── requirements.txt             # Dependencies
 ├── .gitignore
-├── templates/
+├── .env                         # API key (excluded from Git)
+├── templates/                   # HTML templates
 │   ├── base.html
 │   ├── index.html
-│   ├── logs.html
-├── static/
+│   └── logs.html
+├── static/                      # CSS and frontend assets
 │   └── style.css
-├── start-chatbot.bat
-├── stop-chatbot.bat
-├── README.md
+├── start-chatbot.bat            # Windows start script
+├── stop-chatbot.bat             # Windows stop script
+├── chatlog.log                  # Local chat history (rotating)
+└── README.md                    # This file
 
 
 ## How to Run Locally
